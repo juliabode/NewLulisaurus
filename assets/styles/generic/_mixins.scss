@@ -1,0 +1,88 @@
+/*------------------------------------*\
+    $MIXINS
+\*------------------------------------*/
+
+// Vendorize CSS Properties - eg.: vendorize(border-box, 10px);
+@mixin vendorize($property, $value) {
+    -webkit-#{$property}: $value;
+    -moz-#{$property}: $value;
+    -ms-#{$property}: $value;
+    -o-#{$property}: $value;
+    #{$property}: $value;
+}
+
+/* CSS Transition
+    Usage: @include transition(width,0.3s,ease-out);
+ */
+@mixin transition($transition-property, $transition-time, $method) {
+    -webkit-transition: $transition-property $transition-time $method;
+    -moz-transition: $transition-property $transition-time $method;
+    -ms-transition: $transition-property $transition-time $method;
+    -o-transition: $transition-property $transition-time $method;
+    transition: $transition-property $transition-time $method;
+}
+
+/* Rem Unit font sizes with relative fallback http:/seesparkbox.com/foundry/scss_rem_mixin_now_with_a_better_fallback
+    Usage: @include font-size(1, large);
+*/
+
+@mixin font-size($sizeValue: 1.6, $lineHeight: $sizeValue * 1.5) {
+    $remValue: $sizeValue;
+    $pxValue: ($sizeValue * 10);
+    font-size: ($pxValue) + px;
+    line-height: ($lineHeight * 10) + px;
+}
+
+@mixin linear-gradient($fromColor, $toColor, $fallback:$toColor) {
+    background-color: $fallback; /* Fallback Color */
+    background-image: -webkit-gradient(linear, left top, left bottom, from($fromColor), to($toColor)); /* Saf4+, Chrome */
+    background-image: -webkit-linear-gradient(top, $fromColor, $toColor); /* Chrome 10+, Saf5.1+, iOS 5+ */
+    background-image:    -moz-linear-gradient(top, $fromColor, $toColor); /* FF3.6 */
+    background-image:     -ms-linear-gradient(top, $fromColor, $toColor); /* IE10 */
+    background-image:      -o-linear-gradient(top, $fromColor, $toColor); /* Opera 11.10+ */
+    background-image:         linear-gradient(to bottom, $fromColor, $toColor);
+}
+
+// STRIP UNIT
+// It strips the unit of measure and returns it
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+// CONVERT TO REM
+@function convert-to-rem($value, $base-value: $rem-base)  {
+  $value: strip-unit($value) / strip-unit($base-value) * 1rem;
+  @if ($value == 0rem) { $value: 0; } // Turn 0rem into 0
+  @return $value;
+}
+
+// REM CALC
+
+// New Syntax, allows to optionally calculate on a different base value to counter compounding effect of rem's.
+// Call with 1, 2, 3 or 4 parameters, 'px' is not required but supported:
+//
+//   rem-calc(10 20 30px 40);
+//
+// Space delimited, if you want to delimit using comma's, wrap it in another pair of brackets
+//
+//   rem-calc((10, 20, 30, 40px));
+//
+// Optionally call with a different base (eg: 8px) to calculate rem.
+//
+//   rem-calc(16px 32px 48px, 8px);
+//
+// If you require to comma separate your list
+//
+//   rem-calc((16px, 32px, 48), 8px);
+
+@function rem-calc($values, $base-value: $rem-base) {
+  $max: length($values);
+
+  @if $max == 1 { @return convert-to-rem(nth($values, 1), $base-value); }
+
+  $remValues: ();
+  @for $i from 1 through $max {
+    $remValues: append($remValues, convert-to-rem(nth($values, $i), $base-value));
+  }
+  @return $remValues;
+}

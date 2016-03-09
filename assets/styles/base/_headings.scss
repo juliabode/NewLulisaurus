@@ -1,0 +1,32 @@
+h1, h2, h3 {
+  font-family: $font-secondary;
+  font-weight: normal;
+  color: $brand-primary;
+}
+
+h1 {
+  font-size: $font-size-large-2;
+}
+
+h2 {
+  font-size: $font-size-large-2;
+}
+
+h3 {
+  font-size: 28px;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+h4 {
+    font-family: $font;
+    margin: 6px 0 3px;
+    font-weight: normal;
+}
+
+h5 {
+    font-family: $font;
+    font-size: 18px;
+    color: #999;
+    font-weight: normal;
+}

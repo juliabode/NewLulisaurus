@@ -1,0 +1,43 @@
+.social-media-links {
+    display: block;
+    text-align: center;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 0 !important;
+
+    li {
+        width: 30px;
+        height: 30px;
+        margin: 0 5px;
+        overflow: hidden;
+        display: inline-block;
+
+        a {
+
+            &:before {
+                display: block;
+                width: 30px;
+                height: 30px;
+                font-size: 18px;
+                line-height: 30px;
+                @include transition(all, 0.2s, ease-in);
+            }
+
+            &:before {
+                color: $gray;
+            }
+
+            &.fa-mail:before {
+                content: "\f003";
+            }
+        }
+    }
+}
+
+.social-media-links li:hover a {
+    text-decoration: none;
+
+    &:before {
+        color: $nude;
+    }
+}

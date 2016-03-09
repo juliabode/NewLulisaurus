@@ -1,0 +1,30 @@
+input,
+textarea {
+    height: 32px;
+    margin: 0px 0 15px;
+    width: 100%;
+    padding: 4px 6px;
+    border: 1px solid rgba(20, 75, 106, 0.25);
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+textarea {
+    height: 79px;
+    display: inherit;
+}
+
+input[type="submit"] {
+    color: #c2615f;
+    text-transform: uppercase;
+    cursor: pointer;
+    @include transition(all, .3s, ease);
+    background: white;
+    border-color: #c2615f;
+
+    &:hover {
+        color: $white;
+        background-color: $brand-primary;
+        @include transition(all, .3s, ease);
+    }
+}

@@ -1,0 +1,14 @@
+article {
+    margin: 1rem auto;
+    padding: 2rem 0;
+    border-bottom: 1px solid $gray;
+
+    &:last-child {
+        border: none;
+    }
+}
+
+.meta {
+    text-transform: uppercase;
+    font-size: rem-calc(13);
+}

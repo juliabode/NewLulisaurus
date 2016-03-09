@@ -1,0 +1,40 @@
+html, body {
+    font: 100%/1.5 $font;
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.wrap {
+    padding-bottom: 40px;
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    color: $brand-primary;
+    text-decoration: none;
+
+    &:hover {
+        color: $brand-primary;
+        text-decoration: underline;
+    }
+}
+
+iframe {
+    max-width: 100%;
+}
+
+ul {
+    list-style-position: inside;
+}
+
+.content {
+    margin: 0 0 0 280px !important;
+    max-width: 100% !important;
+    width: auto !important;
+}
